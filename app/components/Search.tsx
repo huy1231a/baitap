@@ -2,8 +2,10 @@
 import React, { useCallback, useState } from 'react'
 import { AiOutlineCloseCircle } from 'react-icons/ai'
 import { IoMdMenu } from 'react-icons/io'
+import useRegisterModal from '../hooks/useRegisterModal'
 
 const Search = () => {
+  const registerModal = useRegisterModal()
   const [isMobile, setIsMobile] = useState(false)
   const toggleMobile = useCallback(() => {
     setIsMobile((current) => !current)
@@ -36,13 +38,13 @@ const Search = () => {
               <div className='bg-white w-[90%] py-8 rounded-lg flex flex-col gap-5'>
                 <p
                   className='text-center font-semibold text-lg cursor-pointer transition hover:text-green-500 duration-150'
-                  onClick={() => {
-                    console.log('hi')
-                  }}>
+                  onClick={registerModal.onOpen}>
                   Đăng nhập
                 </p>
                 <div className='border-1 h-[1px] w-[90%] bg-gray-200 mx-auto'></div>
-                <p className='text-center font-semibold text-lg cursor-pointer hover:text-green-500 hover:transition'>
+                <p
+                  onClick={registerModal.onOpen}
+                  className='text-center font-semibold text-lg cursor-pointer hover:text-green-500 hover:transition'>
                   Đăng ký
                 </p>
               </div>
@@ -79,15 +81,16 @@ const Search = () => {
           <div className='hidden sm:block text-sm font-semibold px-6 border-x-[1px] flex-1 text-center'>
             Trở thành chủ xe
           </div>
-          <div className='hidden sm:block text-sm font-semibold px-6 border-x-[1px] flex-1 text-center'>
-            Hi! <span className='font-bold underline'>Huy</span>
+          <div
+            onClick={registerModal.onOpen}
+            className='hidden sm:block text-sm font-semibold px-6 border-x-[1px] flex-1 text-center'>
+            {/* Hi! <span className='font-bold underline'>Huy</span> */}
+            Đăng nhập
           </div>
           <div
-            onClick={() => {
-              console.log('hi')
-            }}
+            onClick={registerModal.onOpen}
             className='hidden sm:block text-sm font-semibold px-6 border-x-[1px] flex-1 text-center'>
-            Đăng Xuat
+            Đăng ký
           </div>
         </div>
       </div>
